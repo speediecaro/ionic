@@ -19,7 +19,7 @@ export class HomePage {
   }
 
   public goPagePrincipale() {
-    
+
     if (this.isLoggedIn() == true) {
       alert("Bonjour " + localStorage.getItem("firstname") + " " + localStorage.getItem("lastname"));
     } else {
@@ -47,6 +47,8 @@ export class HomePage {
   }
 
   isLoggedIn(): boolean {
+    //localStorage.removeItem("firstname");
+    //localStorage.removeItem("lastname");
     if (localStorage.getItem("firstname") != undefined && localStorage.getItem("lastname") != undefined) {
       return true;
     } else {
