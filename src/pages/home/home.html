@@ -5,38 +5,25 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
+  <h2>Création du profil utilisateur. Bienvenue sur FitMe!</h2>
   <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
+    Créer votre profil afin de pouvoir utiliser FitMe.
   </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
-  <button type="button" class="btn btn-outline-primary">Primary</button>
-
-  <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src='assets/imgs/gym1.png' alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
-  <div class="espace" style="height: 1rem;"></div>
-  <ul class="list-group">
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    Lève la jambe gauche
-    <span class="badge badge-primary badge-pill">10</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    Lève la jambe droite
-    <span class="badge badge-primary badge-pill">10</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    Redressement assis
-    <span class="badge badge-primary badge-pill">8</span>
-  </li>
-</ul>
+  <ion-list>
+    <ion-item>
+      <ion-label flotting>Prenom</ion-label>
+      <ion-input [(ngModel)]="prenom" name="prenom" type="text" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label flotting>Nom</ion-label>
+        <ion-input [(ngModel)]="nom" name="nom" type="text" value=""></ion-input>
+      </ion-item>
+    <ion-item>
+      <ion-label floatting>Courriel (optionnel)</ion-label>
+      <ion-input [(ngModel)]="courriel" name="courriel" type="email" value=""></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-buttons>
+      <button ion-button (click)="goPagePrincipale()">S'inscire </button>
+  </ion-buttons>
 </ion-content>
