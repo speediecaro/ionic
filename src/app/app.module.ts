@@ -11,6 +11,7 @@ import { ProfilPage } from '../pages/profil/profil';
 import { PagePrincipalePage } from '../pages/page-principale/page-principale';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { SQLite } from '@ionic-native/sqlite';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SQLite
   ]
 })
 export class AppModule {}
