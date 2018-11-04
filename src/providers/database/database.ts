@@ -35,4 +35,27 @@ export class DatabaseProvider {
       .catch(e => console.log(e));
   }
 
+  // public getWorkouts(): any[] {
+  //   var sql = "";
+
+  //   this.db.executeSql(sql)
+  //       .then(() => {})
+  //       .catch(e => console.log(e));
+  // }
+
+  // public getWorkout(id: number): any {
+  //   var sql = "";
+
+  //   this.db.executeSql(sql)
+  //       .then(() => {})
+  //       .catch(e => console.log(e));
+  // }
+
+  // public getExercice(id: number): any {
+  //   var sql = "";
+
+  //   this.db.executeSql(sql)
+  //       .then(() => {})
+  //       .catch(e => console.log(e));
+  // }
 }
