@@ -17,9 +17,9 @@
 
   <ion-list>
     
-    <!-- <ion-item *ngFor="let workout of workouts" (click)="workoutSelected(workout)">
-      <h2>item.title</h2>
-    </ion-item> -->
+    <ion-item *ngFor="let workout of workouts" (click)="workoutSelected(workout.id)">
+      <h2>{{ workout.title }}</h2>
+    </ion-item>
 
   </ion-list>
 

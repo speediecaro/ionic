@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DatabaseProvider } from '../../providers/database/database';
 
 /**
  * Generated class for the WorkoutPage page.
@@ -14,12 +15,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'workout.html',
 })
 export class WorkoutPage {
+  private workoutId: number;
+  private workout: any;
+  private exercices: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private database: DatabaseProvider) {
+      this.workoutId = navParams.get('workoutId');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad WorkoutPage');
+  async ionViewWillEnter() {
+    this.workout = await this.database.getWorkout(this.workoutId);
+    this.exercices = await this.database.getWorkoutExercices(this.workoutId);
+  }
+
+  public exerciceSelected(exerciceId: number) {
+    // this.navCtrl.push(ExercicePage, { exerciceId: exerciceId });
   }
 
 }
