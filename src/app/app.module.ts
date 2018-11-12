@@ -12,12 +12,9 @@ import { ProfilPage } from '../pages/profil/profil';
 import { PagePrincipalePage } from '../pages/page-principale/page-principale';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { SettingsPage } from '../pages/settings/settings';
-
 import { SQLite } from '@ionic-native/sqlite';
 import { DatabaseProvider } from '../providers/database/database';
-
+import { SettingsPage } from '../pages/settings/settings';
 
 @NgModule({
   declarations: [
