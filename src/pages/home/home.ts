@@ -56,7 +56,7 @@ export class HomePage {
 
   isLoggedIn(): boolean {
     // Pour déboguer, enlever cette ligne reinitProfile, on peut refaire la réinitialisation du profile
-    this.reinitProfile();
+   // this.reinitProfile();
     if (localStorage.getItem("firstname") != undefined && localStorage.getItem("lastname") != undefined) {
       return true;
     } else {
