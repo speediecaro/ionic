@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+
 /**
  * Generated class for the MyWorkoutsPage page.
  *
@@ -22,6 +23,10 @@ export class MyWorkoutsPage {
     console.log('ionViewDidLoad MyWorkoutsPage');
   }
 
+/* pour redirer vers la page workout */ 
+  viewWorkoutsPages(){
+   // this.navCtrl.push()
+  }
 
   WORKOUTS = [
   

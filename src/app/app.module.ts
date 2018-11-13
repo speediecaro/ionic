@@ -1,3 +1,4 @@
+
 import { MyWorkoutsPage } from './../pages/my-workouts/my-workouts';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,7 +25,7 @@ import { SettingsPage } from '../pages/settings/settings';
     PagePrincipalePage,
     SettingsPage,
     ProfilPage,
-    MyWorkoutsPage
+    MyWorkoutsPage,
   ],
   imports: [
     BrowserModule,
