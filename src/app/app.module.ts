@@ -4,6 +4,8 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { StatusBar } from '@ionic-native/status-bar';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -11,11 +13,9 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ProfilPage } from '../pages/profil/profil';
 import { PagePrincipalePage } from '../pages/page-principale/page-principale';
-import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { SQLite } from '@ionic-native/sqlite';
-import { DatabaseProvider } from '../providers/database/database';
 import { SettingsPage } from '../pages/settings/settings';
+import { WorkoutPage } from '../pages/workout/workout';
 
 @NgModule({
   declarations: [
@@ -28,10 +28,12 @@ import { SettingsPage } from '../pages/settings/settings';
     SettingsPage,
     ProfilPage,
     MyWorkoutsPage,
+    WorkoutPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,14 +45,13 @@ import { SettingsPage } from '../pages/settings/settings';
     PagePrincipalePage,
     ProfilPage,
     SettingsPage,
-    MyWorkoutsPage
+    MyWorkoutsPage,
+    WorkoutPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SQLite,
-    DatabaseProvider
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}
