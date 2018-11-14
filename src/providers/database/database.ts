@@ -9,46 +9,46 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 */
 @Injectable()
 export class DatabaseProvider {
-  private db: SQLiteObject;
-  options: any = {
+  private storage: SQLiteObject;
+  private options: any = {
     name: 'data.db',
     location: 'default'
   }
+  private sqlCreate = `CREATE TABLE IF NOT EXISTS workouts (id INTEGER PRIMARY KEY, title VARCHAR(50))`;
 
   constructor(private sqlite: SQLite) {
     this.connect();
   }
-    
-  private connect(): void {
-    this.sqlite.create(this.options)
+   
+  private async connect() {
+    await this.sqlite.create(this.options)
       .then((db: SQLiteObject) => {
-        this.db = db;
+        this.storage = db;
 
-        var sql = `
-          CREATE TABLE IF NOT EXISTS 'workouts' (id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(50));
-          CREATE TABLE IF NOT EXISTS 'exercices' (id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(50), workout_id INTEGER);`;
-
-        db.executeSql(sql, {})
-          .then(() => {})
+        db.executeSql(this.sqlCreate, [])
+          .then((res) => console.log(res))
           .catch(e => console.log(e));
-
       })
       .catch(e => console.log(e));
   }
 
-  public getWorkouts(): any[] {
+  public async getWorkouts(): Promise<any[]> {
     var sql = "SELECT * FROM workouts";
+    var results: any[] = [];
 
-  //   this.db.executeSql(sql)
-  //       .then(() => {})
-  //       .catch(e => console.log(e));
-    return;
+    await this.storage.executeSql(sql)
+      .then((res) => {
+        results = res.rows;
+      })
+      .catch(e => console.log(e));
+
+    return results;
   }
 
   public getWorkout(workoutId: number): any {
     var sql = "SELECT * FROM workouts WHERE id = ?";
 
-  //   this.db.executeSql(sql)
+  //   this.storage.executeSql(sql)
   //       .then(() => {})
   //       .catch(e => console.log(e));
     return;
@@ -57,7 +57,7 @@ export class DatabaseProvider {
   public getWorkoutExercices(workoutId: number): any[] {
     var sql = "SELECT * FROM exercices WHERE workout_id = ?";
 
-  //   this.db.executeSql(sql)
+  //   this.storage.executeSql(sql)
   //       .then(() => {})
   //       .catch(e => console.log(e));
     return;
@@ -66,7 +66,7 @@ export class DatabaseProvider {
   public getExercice(exerciceId: number): any {
     var sql = "SELECT * FROM exercices WHERE id = ?";
 
-  //   this.db.executeSql(sql)
+  //   this.storage.executeSql(sql)
   //       .then(() => {})
   //       .catch(e => console.log(e));
     return;

@@ -14,43 +14,40 @@
 
 
 <ion-content padding class = "myworkouts" > 
-<h2> Your Workouts </h2>
 
+  <ion-grid> 
+    <ion-list>
+      <ion-item-sliding (tap)= "viewWorkoutsPage()" *ngFor="let data of WORKOUTS">
+        <ion-item>
+          <ion-avatar>
+            <img src="assets/imgs/gym1.png">
+          </ion-avatar>
+          <div class="lesWorkouts">
+            {{data.name}}
+          </div>
+        </ion-item>
+        <ion-item-options side = "right">
+          <button ion-button color = "primary">
+            <ion-icon name ="clipboard"></ion-icon>
+            Modify
+          </button>
+          <button ion-button color = "primary">
+            <ion-icon name ="trash"></ion-icon>
+            Erase
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
 
-<ion-grid  > 
-<ion-list >
-<ion-item-sliding (tap)= "viewWorkoutsPages()" *ngFor="let data of WORKOUTS">
-<!--<ion-item  *ngFor =" let workout in WORKOUTS">-->
-    <ion-item >
-        <ion-avatar>
-          <img src="assets/imgs/gym1.png">
-        </ion-avatar>
-        <div class="lesWorkouts">
-          {{data.name}}
-        </div>
-      </ion-item>
-<ion-item-options side = "right">
-  <button ion-button color = "primary">
-    <ion-icon name ="clipboard">  </ion-icon>
-    modify
-  </button>
-  <button ion-button color = "primary">
-      <ion-icon name ="trash">  </ion-icon>
-      Erase 
-    </button>
-</ion-item-options>
-</ion-item-sliding>
-</ion-list>
-
-<ion-row> 
-<ion-col>
-  <button ion-button icon-start>
-    <ion-icon name ="add-circle"></ion-icon>
-    New
-  </button>
-</ion-col>
-</ion-row>
-</ion-grid>
+  <ion-row> 
+    <ion-col>
+      <button ion-button icon-start>
+        <ion-icon name ="add-circle"></ion-icon>
+        New
+      </button>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
 
 
 

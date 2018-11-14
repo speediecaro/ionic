@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ workout.title }}</ion-title>
+    <ion-title>Entrainement</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,12 +15,38 @@
 
 <ion-content>
 
-  <ion-list>
-    
-    <ion-item *ngFor="let exercice of exercices" (click)="exerciceSelected(exercice.id)">
-      <h2>{{ exercice.title }}</h2>
-    </ion-item>
+  <ion-grid> 
+    <ion-list>
+      <ion-item-sliding (tap)= "viewExercicePopup()" *ngFor="let data of EXERCICES">
+        <ion-item>
+          <ion-avatar>
+            <img src="assets/imgs/gym1.png">
+          </ion-avatar>
+          <div class="lesExercices">
+            {{data.name}}
+          </div>
+        </ion-item>
+        <ion-item-options side = "right">
+          <button ion-button color = "primary">
+            <ion-icon name ="clipboard"></ion-icon>
+            Modify
+          </button>
+          <button ion-button color = "primary">
+            <ion-icon name ="trash"></ion-icon>
+            Erase
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
 
-  </ion-list>
+  <ion-row> 
+    <ion-col>
+      <button ion-button icon-start>
+        <ion-icon name ="add-circle"></ion-icon>
+        New
+      </button>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
