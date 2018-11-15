@@ -18,7 +18,6 @@ export class MyApp {
       
       // Verify if profile exists
       var temp = localStorage.getItem("firstname");
-      console.log(temp);
       if(temp != "undefined") this.rootPage = MyWorkoutsPage;
 
       statusBar.styleDefault();

@@ -30,6 +30,10 @@ export class SettingsPage {
     this.nav = nav;
   }
 
+  ionViewWillEnter() {
+    this.afficherProfile();
+  }
+
   reinitProfile(): boolean {
     localStorage.removeItem("firstname");
     localStorage.removeItem("lastname");
@@ -58,9 +62,24 @@ export class SettingsPage {
     return true;
   }
 
+  afficherProfile(): boolean {
+    this.prenom = localStorage.getItem("firstname");
+    this.nom = localStorage.getItem("lastname");
+    this.courriel = localStorage.getItem("courriel");
+    this.poids = localStorage.getItem("poids");
+    this.age = localStorage.getItem("age");
+    this.niveau = localStorage.getItem("niveau");
+    this.genre = localStorage.getItem("genre");
+    this.pieds = localStorage.getItem("pieds");
+    this.pouces = localStorage.getItem("pouces");
+    this.objectifs = localStorage.getItem("objectifs");
+    return true;
+  }
+
   goPagePrincipale() {
+    this.addProfile();
     this.nav.push(MyWorkoutsPage);
-    this.nav.removeView(this.nav.getActive())
+    this.nav.removeView(this.nav.getActive());
   }
 
 }

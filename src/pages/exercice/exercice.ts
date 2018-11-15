@@ -6,12 +6,6 @@ import { ViewChild } from '@angular/core';
 import { WorkoutPage } from '../workout/workout';
 import { SettingsPage } from '../settings/settings';
 
-/**
- * Generated class for the ExercicePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -59,10 +53,6 @@ export class ExercicePage {
   }
 
   private async saveExercice() {
-    console.log(this.exerciceName);
-    console.log(this.workoutId);
-    console.log(this.exerciceId);
-
     if(!this.exerciceName) return;
 
     if(!this.exerciceId){
@@ -70,13 +60,10 @@ export class ExercicePage {
       exerciceMax++;
       this.exerciceId = exerciceMax;
       this.storage.set('exerciceMax' + this.workoutId, exerciceMax);
-
-      console.log(this.exerciceId);
-      console.log(exerciceMax);
     }
 
     await this.storage.set("exercice" + this.workoutId + "-" + this.exerciceId, { id: this.exerciceId, name: this.exerciceName })
-      .then(() => console.log("saveExercice"))
+      .then(() => {})
       .catch((e) => console.log(e));
   }
 
