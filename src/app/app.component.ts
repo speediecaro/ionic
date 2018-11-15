@@ -22,7 +22,13 @@ export class MyApp {
       storage.set('workoutMax', 1);
       storage.set("workout1", {
         id: 1,
-        title: 'Test'
+        name: 'Test'
+      });
+
+      storage.set('exerciceMax1', 1);
+      storage.set("exercice1-1", {
+        id: 1,
+        name: 'Test'
       });
     });
   }

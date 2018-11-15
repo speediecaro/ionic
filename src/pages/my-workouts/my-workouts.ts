@@ -25,17 +25,14 @@ export class MyWorkoutsPage {
   }
 
   async ionViewWillEnter() {
+    this.workoutList = [];
     await this.getWorkoutList();
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MyWorkoutsPage');
   }
 
   private async getWorkoutList() {
     var temp: any;
     var max: number = await this.storage.get('workoutMax');
-
+    
     for(var i = 0; i <= max; i++){
       temp = await this.storage.get("workout" + i);
       if (temp) this.workoutList.push(temp);

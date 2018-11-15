@@ -7,46 +7,48 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Entrainement</ion-title>
+    <ion-title>{{ workoutName }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content>
+<ion-content padding>
 
-  <ion-grid> 
-    <ion-list>
-      <ion-item-sliding (tap)= "viewExercicePopup()" *ngFor="let data of EXERCICES">
+  <ion-list>
+    <ion-item-group>
+      <ion-item>
+        <ion-label>Nom</ion-label>
+        <ion-input type="text" [value]="workoutName"></ion-input>
+      </ion-item>
+    </ion-item-group> 
+    <ion-item-group>
+      <ion-item-divider>Exercices</ion-item-divider>
+      <ion-item-sliding (tap)="viewExercicePage(exercice.id)" *ngFor="let exercice of exerciceList">
         <ion-item>
-          <ion-avatar>
+          <ion-avatar item-start>
             <img src="assets/imgs/gym1.png">
           </ion-avatar>
-          <div class="lesExercices">
-            {{data.name}}
-          </div>
+          <h2>{{exercice.name}}</h2>
         </ion-item>
-        <ion-item-options side = "right">
-          <button ion-button color = "primary">
+        <ion-item-options side="right">
+          <!-- <button ion-button color="primary">
             <ion-icon name ="clipboard"></ion-icon>
             Modify
-          </button>
-          <button ion-button color = "primary">
-            <ion-icon name ="trash"></ion-icon>
-            Erase
+          </button> -->
+          <button ion-button (tap)="deleteExercice(exercice.id)" color="primary">
+            <ion-icon name="trash"></ion-icon>
+            Effacer
           </button>
         </ion-item-options>
       </ion-item-sliding>
-    </ion-list>
+    </ion-item-group>
+  </ion-list>
 
-  <ion-row> 
-    <ion-col>
-      <button ion-button icon-start>
-        <ion-icon name ="add-circle"></ion-icon>
-        New
-      </button>
-    </ion-col>
-    </ion-row>
-  </ion-grid>
+
+  <button ion-button (tap)="newExercicePage()" icon-start block>
+    <ion-icon name="add-circle"></ion-icon>
+    Ajouter un exercice
+  </button>
 
 </ion-content>

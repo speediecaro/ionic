@@ -7,46 +7,38 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>My workouts</ion-title>
+    <ion-title>Mes entrainements</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding class="myworkouts" > 
+<ion-content padding> 
 
-  <ion-grid> 
-    <ion-list>
-      <ion-item-sliding (tap)="viewWorkoutPage(workout.id)" *ngFor="let workout of workoutList">
-        <ion-item>
-          <ion-avatar>
-            <img src="assets/imgs/gym1.png">
-          </ion-avatar>
-          <div class="lesWorkouts">
-            {{workout.name}}
-          </div>
-        </ion-item>
-        <ion-item-options side="right">
-          <!-- <button ion-button color="primary">
-            <ion-icon name ="clipboard"></ion-icon>
-            Modify
-          </button> -->
-          <button ion-button (tap)="deleteWorkout(workout.id)" color="primary">
-            <ion-icon name="trash"></ion-icon>
-            Erase
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-
-    <ion-row> 
-      <ion-col>
-        <button ion-button (tap)="newWorkoutPage()" icon-start>
-          <ion-icon name="add-circle"></ion-icon>
-          New
+  <ion-list>
+    <ion-item-sliding (tap)="viewWorkoutPage(workout.id)" *ngFor="let workout of workoutList">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/gym1.png">
+        </ion-avatar>
+        <h2>{{workout.name}}</h2>
+      </ion-item>
+      <ion-item-options side="right">
+        <!-- <button ion-button color="primary">
+          <ion-icon name ="clipboard"></ion-icon>
+          Modify
+        </button> -->
+        <button ion-button (tap)="deleteWorkout(workout.id)" color="primary">
+          <ion-icon name="trash"></ion-icon>
+          Effacer
         </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <button ion-button (tap)="newWorkoutPage()" icon-start block>
+    <ion-icon name="add-circle"></ion-icon>
+    Ajouter un entrainement
+  </button>
 
 </ion-content>
