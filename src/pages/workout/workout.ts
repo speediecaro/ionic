@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { MyWorkoutsPage } from '../my-workouts/my-workouts';
 
 /**
  * Generated class for the WorkoutPage page.
@@ -43,6 +44,15 @@ export class WorkoutPage {
     }
   }
 
+  ionViewDidLoad() {
+    this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getActive()) - 1);
+    this.navCtrl.insert(this.navCtrl.indexOf(this.navCtrl.getActive()) - 1, MyWorkoutsPage);
+  }
+
+  ionViewCanLeave() {
+    this.saveWorkout();
+  }
+
   private async getExerciceList() {
     var temp: any;
     this.exerciceList = [];
@@ -69,6 +79,19 @@ export class WorkoutPage {
     // Reload page
     this.navCtrl.push(this.navCtrl.getActive().component, { workoutId: this.workoutId });
     this.navCtrl.removeView(this.navCtrl.getActive());
+  }
+
+  private async saveWorkout() {
+    if(!this.workoutName) return;
+
+    var workoutMax: number = await this.storage.get('workoutMax');
+    if(!this.workoutId) {
+      workoutMax++;
+      this.workoutId = workoutMax;
+      this.storage.set('workoutMax', workoutMax);
+    }
+
+    await this.storage.set("workout" + this.workoutId, { id: this.workoutId, name: this.workoutName });
   }
 
 }

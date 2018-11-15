@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ workoutName }}</ion-title>
+    <ion-title>{{ pageTitle }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -19,9 +19,9 @@
     <ion-item-group>
       <ion-item>
         <ion-label>Nom</ion-label>
-        <ion-input type="text" [value]="workoutName"></ion-input>
+        <ion-input type="text" [(ngModel)]="workoutName"></ion-input>
       </ion-item>
-    </ion-item-group> 
+    </ion-item-group>
     <ion-item-group>
       <ion-item-divider>Exercices</ion-item-divider>
       <ion-item-sliding *ngFor="let exercice of exerciceList">
