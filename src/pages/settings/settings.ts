@@ -30,9 +30,11 @@ export class SettingsPage {
   public goPagePrincipale() {
 
     if (this.isLoggedIn() == true) {
-      alert("Bonjour " + localStorage.getItem("firstname") + " " + localStorage.getItem("lastname"));
+      //alert("Bonjour " + localStorage.getItem("firstname") + " " + localStorage.getItem("lastname"));
+      this.modifierProfile();
+      this.addProfile();
     } else {
-      alert("Bienvenue " + this.prenom + " " + this.nom + " ! + Objectifs : " + this.objectifs);
+      //alert("Bienvenue " + this.prenom + " " + this.nom + " ! + Objectifs : " + this.objectifs);
       this.addProfile();
     }
     this.nav.push(HomePage);
@@ -63,6 +65,22 @@ export class SettingsPage {
       return false;
     }
   }
+
+  // Permet de modifier le html avec ce qui est storé
+  modifierProfile(): boolean{
+    this.prenom = localStorage.getItem("firstname");
+    this.nom = localStorage.getItem("lastname");
+    this.courriel = localStorage.getItem("courriel");
+    this.poids = localStorage.getItem("poids");
+    this.age = localStorage.getItem("age");
+    this.niveau = localStorage.getItem("niveau");
+    this.genre = localStorage.getItem("genre");
+    this.pieds = localStorage.getItem("pieds");
+    this.pouces = localStorage.getItem("pouces");
+    this.objectifs = localStorage.getItem("objectifs");
+    return true;
+  }
+  // Permet d'enlever ce qui a été mis dans le locas storage, pour tests seulement
   reinitProfile(): boolean {
     localStorage.removeItem("firstname");
     localStorage.removeItem("lastname");
@@ -77,6 +95,7 @@ export class SettingsPage {
     return true;
   }
 
+  //Permet d'ajouter dans le storage local le profil de l'utilisateur
   addProfile(): boolean {
     localStorage.setItem("firstname", this.prenom);
     localStorage.setItem("lastname", this.nom);
@@ -89,14 +108,5 @@ export class SettingsPage {
     localStorage.setItem("pouces", this.pouces);
     localStorage.setItem("objectifs", this.objectifs);
     return true;
-  }
-
- showAlert() {
-    const alert = this.alertCtrl.create({
-      title: 'New Friend!',
-      subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
-      buttons: ['OK']
-    });
-    alert.present();
   }
 }
