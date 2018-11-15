@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { MyWorkoutsPage } from '../my-workouts/my-workouts';
 
 @Component({
   selector: 'page-settings',
@@ -55,6 +56,11 @@ export class SettingsPage {
     localStorage.setItem("pouces", this.pouces);
     localStorage.setItem("objectifs", this.objectifs);
     return true;
+  }
+
+  goPagePrincipale() {
+    this.nav.push(MyWorkoutsPage);
+    this.nav.removeView(this.nav.getActive())
   }
 
 }

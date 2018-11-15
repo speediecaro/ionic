@@ -18,7 +18,8 @@ export class MyApp {
       
       // Verify if profile exists
       var temp = localStorage.getItem("firstname");
-      if(temp) this.rootPage = MyWorkoutsPage;
+      console.log(temp);
+      if(temp != "undefined") this.rootPage = MyWorkoutsPage;
 
       statusBar.styleDefault();
       splashScreen.hide();
