@@ -24,24 +24,15 @@
     </ion-item-group>
     <ion-item-group>
       <ion-item-divider>Exercices</ion-item-divider>
-      <ion-item-sliding *ngFor="let exercice of exerciceList">
-        <ion-item>
+        <ion-item *ngFor="let exercice of exerciceList" (tap)="viewExercicePage(exercice.id)">
           <ion-avatar item-start>
             <img src="assets/imgs/gym1.png">
           </ion-avatar>
           <h2>{{exercice.name}}</h2>
-        </ion-item>
-        <ion-item-options side="right">
-          <button ion-button (tap)="viewExercicePage(exercice.id)" color="primary">
-            <ion-icon name ="clipboard"></ion-icon>
-            Modify
-          </button>
-          <button ion-button (tap)="deleteExercice(exercice.id)" color="primary">
+          <button ion-button icon-only clear item-end (tap)="deleteExercice(exercice.id)" color="primary">
             <ion-icon name="trash"></ion-icon>
-            Effacer
           </button>
-        </ion-item-options>
-      </ion-item-sliding>
+      </ion-item>
     </ion-item-group>
   </ion-list>
 
