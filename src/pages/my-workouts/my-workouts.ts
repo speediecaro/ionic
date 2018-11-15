@@ -16,7 +16,7 @@ import { WorkoutPage } from '../workout/workout';
   templateUrl: 'my-workouts.html',
 })
 export class MyWorkoutsPage {
-  workoutList: any[] = [];
+  workoutList: any[];
 
   constructor(
     public navCtrl: NavController,
@@ -52,7 +52,9 @@ export class MyWorkoutsPage {
       .then(() => console.log("Deleted workout " + workoutId))
       .catch((e) => console.log(e));
 
-    this.navCtrl.setRoot(this.navCtrl.getActive().component); // reload page
+    // Reload page
+    this.navCtrl.push(this.navCtrl.getActive().component);
+    this.navCtrl.removeView(this.navCtrl.getActive());
   }
 }
 

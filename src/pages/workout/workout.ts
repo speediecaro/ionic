@@ -17,7 +17,9 @@ import { Storage } from '@ionic/storage';
 export class WorkoutPage {
   private workoutId: number;
   private workout: any;
-  private workoutName: string = "Nouvel entrainement";
+  private workoutName: string;
+  private pageTitle: string = "Nouvel entrainement";
+  private exerciceMax: number;
   private exerciceList: any[];
 
   constructor(
@@ -28,20 +30,24 @@ export class WorkoutPage {
 
   async ionViewWillEnter() {
     this.workoutId = this.navParams.get('workoutId');
-    console.log(this.workoutId);
+
     if(this.workoutId){
       this.workout = await this.storage.get('workout' + this.workoutId);
-      this.workoutName = this.workout.name;
-      await this.getExerciceList();
+      
+      if(this.workout) {
+        this.workoutName = this.workout.name;
+        this.pageTitle = this.workoutName;
+        this.exerciceMax = await this.storage.get('exerciceMax' + this.workoutId);
+        await this.getExerciceList();
+      }
     }
   }
 
   private async getExerciceList() {
     var temp: any;
-    var max: number = await this.storage.get('exerciceMax' + this.workoutId);
     this.exerciceList = [];
     
-    for(var i = 0; i <= max; i++){
+    for(var i = 0; i <= this.exerciceMax; i++){
       temp = await this.storage.get("exercice" + this.workoutId + "-" + i);
       if (temp) this.exerciceList.push(temp);
     }
@@ -60,7 +66,9 @@ export class WorkoutPage {
       .then(() => console.log("Deleted exercice " + this.workoutId + "-" + exerciceId))
       .catch((e) => console.log(e));
 
-    this.navCtrl.setRoot(this.navCtrl.getActive().component); // reload page
+    // Reload page
+    this.navCtrl.push(this.navCtrl.getActive().component, { workoutId: this.workoutId });
+    this.navCtrl.removeView(this.navCtrl.getActive());
   }
 
 }

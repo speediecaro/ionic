@@ -16,7 +16,7 @@
 <ion-content padding> 
 
   <ion-list>
-    <ion-item-sliding (tap)="viewWorkoutPage(workout.id)" *ngFor="let workout of workoutList">
+    <ion-item-sliding *ngFor="let workout of workoutList">
       <ion-item>
         <ion-avatar item-start>
           <img src="assets/imgs/gym1.png">
@@ -24,11 +24,11 @@
         <h2>{{workout.name}}</h2>
       </ion-item>
       <ion-item-options side="right">
-        <!-- <button ion-button color="primary">
+        <button ion-button (tap)="viewWorkoutPage(workout.id)" color="primary">
           <ion-icon name ="clipboard"></ion-icon>
           Modify
-        </button> -->
-        <button ion-button (tap)="deleteWorkout(workout.id)" color="primary">
+        </button>
+        <button ion-button (tap)="deleteWorkout(workout.id, $event)" color="primary">
           <ion-icon name="trash"></ion-icon>
           Effacer
         </button>
