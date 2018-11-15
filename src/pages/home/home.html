@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class = "home">
   <h2>Création du profil utilisateur. Bienvenue sur FitMe!</h2>
   <p>
     Créer votre profil afin de pouvoir utiliser FitMe.
@@ -15,15 +15,75 @@
       <ion-input [(ngModel)]="prenom" name="prenom" type="text" value=""></ion-input>
     </ion-item>
     <ion-item>
-        <ion-label flotting>Nom</ion-label>
-        <ion-input [(ngModel)]="nom" name="nom" type="text" value=""></ion-input>
-      </ion-item>
+      <ion-label flotting>Nom</ion-label>
+      <ion-input [(ngModel)]="nom" name="nom" type="text" value=""></ion-input>
+    </ion-item>
     <ion-item>
       <ion-label floatting>Courriel (optionnel)</ion-label>
       <ion-input [(ngModel)]="courriel" name="courriel" type="email" value=""></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label floatting>Âge (optionnel)</ion-label>
+      <ion-input [(ngModel)]="age" name="age" type="text" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floatting>Poids (optionnel)</ion-label>
+      <ion-input [(ngModel)]="poids" name="poids" type="text" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floatting>Taille (optionnel)</ion-label>
+      <!--<ion-input [(ngModel)]="taille" name="taille" type="text" value=""></ion-input>-->
+      <ion-select [(ngModel)]="pieds">
+        <ion-option value="2">2'</ion-option>
+        <ion-option value="3">3'</ion-option>
+        <ion-option value="4">4'</ion-option>
+        <ion-option value="5">5'</ion-option>
+        <ion-option value="6">6'</ion-option>
+        <ion-option value="7">7'</ion-option>
+      </ion-select>
+      <ion-select [(ngModel)]="pouces">
+        <ion-option value="0">0"</ion-option>
+        <ion-option value="1">1"</ion-option>
+        <ion-option value="2">2"</ion-option>
+        <ion-option value="3">3"</ion-option>
+        <ion-option value="4">4"</ion-option>
+        <ion-option value="5">5"</ion-option>
+        <ion-option value="6">6"</ion-option>
+        <ion-option value="7">7"</ion-option>
+        <ion-option value="8">8"</ion-option>
+        <ion-option value="9">9"</ion-option>
+        <ion-option value="10">10"</ion-option>
+        <ion-option value="11">11"</ion-option>
+        <ion-option value="12">12"</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Genre (optionnel)</ion-label>
+      <ion-select [(ngModel)]="genre">
+        <ion-option value="inconnu">Inconnu</ion-option>
+        <ion-option value="masculin">Masculin</ion-option>
+        <ion-option value="feminin">Féminin</ion-option>
+        <ion-option value="sansobjet">Sans objet</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Niveau (optionnel)</ion-label>
+      <ion-select [(ngModel)]="niveau">
+        <ion-option value="debutant">Débutant</ion-option>
+        <ion-option value="intermediaire">Intermédiaire</ion-option>
+        <ion-option value="avance">Avancé</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Objectifs (optionnel)</ion-label>
+      <ion-select [(ngModel)]="objectifs" multiple="true">
+        <ion-option value="masse">Augmenter masse</ion-option>
+        <ion-option value="perteGras">Perdre du gras</ion-option>
+        <ion-option value="force">Augmenter ma force</ion-option>
+      </ion-select>
+    </ion-item>
   </ion-list>
   <ion-buttons>
-      <button ion-button (click)="goPagePrincipale()">S'inscire </button>
+      <button ion-button (click)="goPagePrincipale()">S'inscrire </button>
   </ion-buttons>
 </ion-content>

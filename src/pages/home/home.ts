@@ -12,6 +12,15 @@ export class HomePage {
   nav: NavController;
   prenom: any;
   nom: any;
+  courriel: any;
+  age: any;
+  poids: any;
+  niveau: any;
+  genre: any;
+  pieds: any;
+  pouces: any;
+  objectifs: any;
+
   //public toast: ToastController;
 
   static get parameters() {
@@ -23,9 +32,8 @@ export class HomePage {
     if (this.isLoggedIn() == true) {
       alert("Bonjour " + localStorage.getItem("firstname") + " " + localStorage.getItem("lastname"));
     } else {
-      alert("Bienvenue" + this.prenom + " " + this.nom + "!");
-      localStorage.setItem("firstname", this.prenom);
-      localStorage.setItem("lastname", this.nom);
+      alert("Bienvenue " + this.prenom + " " + this.nom + " ! + Objectifs : " + this.objectifs);
+      this.addProfile();
     }
     this.nav.push(PagePrincipalePage);
   }
@@ -47,13 +55,40 @@ export class HomePage {
   }
 
   isLoggedIn(): boolean {
-    //localStorage.removeItem("firstname");
-    //localStorage.removeItem("lastname");
+    // Pour déboguer, enlever cette ligne reinitProfile, on peut refaire la réinitialisation du profile
+   // this.reinitProfile();
     if (localStorage.getItem("firstname") != undefined && localStorage.getItem("lastname") != undefined) {
       return true;
     } else {
       return false;
     }
+  }
+  reinitProfile(): boolean {
+    localStorage.removeItem("firstname");
+    localStorage.removeItem("lastname");
+    localStorage.removeItem("courriel");
+    localStorage.removeItem("poids");
+    localStorage.removeItem("age");
+    localStorage.removeItem("niveau");
+    localStorage.removeItem("genre");
+    localStorage.removeItem("pieds");
+    localStorage.removeItem("pouces");
+    localStorage.removeItem("objectifs");
+    return true;
+  }
+
+  addProfile(): boolean {
+    localStorage.setItem("firstname", this.prenom);
+    localStorage.setItem("lastname", this.nom);
+    localStorage.setItem("courriel", this.courriel);
+    localStorage.setItem("poids", this.poids);
+    localStorage.setItem("age", this.age);
+    localStorage.setItem("niveau", this.niveau);
+    localStorage.setItem("genre", this.genre);
+    localStorage.setItem("pieds", this.pieds);
+    localStorage.setItem("pouces", this.pouces);
+    localStorage.setItem("objectifs", this.objectifs);
+    return true;
   }
 
  showAlert() {
