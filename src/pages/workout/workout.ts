@@ -43,6 +43,7 @@ export class WorkoutPage {
         this.workoutName = this.workout.name;
         this.pageTitle = this.workoutName;
         this.exerciceMax = await this.storage.get('exerciceMax' + this.workoutId);
+        this.exerciceList = [];
         await this.getExerciceList();
       }
     }
@@ -62,7 +63,6 @@ export class WorkoutPage {
 
   private async getExerciceList() {
     var temp: any;
-    this.exerciceList = [];
     
     for(var i = 0; i <= this.exerciceMax; i++){
       temp = await this.storage.get("exercice" + this.workoutId + "-" + i);

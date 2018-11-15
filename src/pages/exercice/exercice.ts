@@ -68,14 +68,14 @@ export class ExercicePage {
       var exerciceMax: number = await this.storage.get('exerciceMax' + this.workoutId);
       exerciceMax++;
       this.exerciceId = exerciceMax;
-      this.storage.set('exerciceMax' + this.workoutId + "-" + this.exerciceId, exerciceMax);
+      this.storage.set('exerciceMax' + this.workoutId, exerciceMax);
 
       console.log(this.exerciceId);
       console.log(exerciceMax);
     }
 
     await this.storage.set("exercice" + this.workoutId + "-" + this.exerciceId, { id: this.exerciceId, name: this.exerciceName })
-      .then(() => {})
+      .then(() => console.log("saveExercice"))
       .catch((e) => console.log(e));
   }
 
