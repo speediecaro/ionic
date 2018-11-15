@@ -4,18 +4,22 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 
-import { TabsPage } from '../pages/tabs/tabs';
+import { SettingsPage } from '../pages/settings/settings';
+import { MyWorkoutsPage } from '../pages/my-workouts/my-workouts';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  rootPage:any = SettingsPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, storage: Storage) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      
+      // Verify if profile exists
+      var temp = localStorage.getItem("firstname");
+      if(temp) this.rootPage = MyWorkoutsPage;
+
       statusBar.styleDefault();
       splashScreen.hide();
 

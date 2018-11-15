@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { Navbar } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 import { WorkoutPage } from '../workout/workout';
+import { SettingsPage } from '../settings/settings';
 
 /**
  * Generated class for the ExercicePage page.
@@ -77,6 +78,10 @@ export class ExercicePage {
     await this.storage.set("exercice" + this.workoutId + "-" + this.exerciceId, { id: this.exerciceId, name: this.exerciceName })
       .then(() => console.log("saveExercice"))
       .catch((e) => console.log(e));
+  }
+
+  private viewSettingsPage() {
+    this.navCtrl.push(SettingsPage);
   }
 
 }

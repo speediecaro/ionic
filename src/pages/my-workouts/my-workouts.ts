@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { WorkoutPage } from '../workout/workout';
+import { SettingsPage } from '../settings/settings';
 
 /**
  * Generated class for the MyWorkoutsPage page.
@@ -45,6 +46,11 @@ export class MyWorkoutsPage {
 
   private newWorkoutPage() {
     this.navCtrl.push(WorkoutPage);
+  }
+
+  private viewSettingsPage() {
+    console.log("viewSettingsPage");
+    this.navCtrl.push(SettingsPage);
   }
 
   private deleteWorkout(workoutId: number) {

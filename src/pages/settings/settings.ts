@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import { HomePage } from '../home/home';
-
 
 @Component({
   selector: 'page-settings',
@@ -27,42 +25,10 @@ export class SettingsPage {
     return [[NavController]];
   }
 
-  public goPagePrincipale() {
-
-    if (this.isLoggedIn() == true) {
-      alert("Bonjour " + localStorage.getItem("firstname") + " " + localStorage.getItem("lastname"));
-    } else {
-      alert("Bienvenue " + this.prenom + " " + this.nom + " ! + Objectifs : " + this.objectifs);
-      this.addProfile();
-    }
-    this.nav.push(HomePage);
-  }
-
   constructor(nav: NavController, public alertCtrl: AlertController) {
     this.nav = nav;
-
-    if (typeof (Storage) != "undefined") {
-
-      if (this.isLoggedIn() == true) {
-        this.goPagePrincipale();
-      }
-      else {
-        alert("Veuillez entrer votre profil.");
-      }
-    } else {
-        alert("Désolé, ne supporte pas le Storage..");
-    }
   }
 
-  isLoggedIn(): boolean {
-    // Pour déboguer, enlever cette ligne reinitProfile, on peut refaire la réinitialisation du profile
-   // this.reinitProfile();
-    if (localStorage.getItem("firstname") != undefined && localStorage.getItem("lastname") != undefined) {
-      return true;
-    } else {
-      return false;
-    }
-  }
   reinitProfile(): boolean {
     localStorage.removeItem("firstname");
     localStorage.removeItem("lastname");
@@ -91,12 +57,4 @@ export class SettingsPage {
     return true;
   }
 
- showAlert() {
-    const alert = this.alertCtrl.create({
-      title: 'New Friend!',
-      subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
 }

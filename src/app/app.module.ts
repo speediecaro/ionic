@@ -6,8 +6,6 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SettingsPage } from '../pages/settings/settings';
 import { MyWorkoutsPage } from './../pages/my-workouts/my-workouts';
@@ -17,8 +15,6 @@ import { ExercicePage } from '../pages/exercice/exercice';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    TabsPage,
     SettingsPage,
     MyWorkoutsPage,
     WorkoutPage,
@@ -32,8 +28,6 @@ import { ExercicePage } from '../pages/exercice/exercice';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    TabsPage,
     SettingsPage,
     MyWorkoutsPage,
     WorkoutPage,

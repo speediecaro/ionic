@@ -5,6 +5,7 @@ import { Navbar } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 import { MyWorkoutsPage } from '../my-workouts/my-workouts';
 import { ExercicePage } from '../exercice/exercice';
+import { SettingsPage } from '../settings/settings';
 
 /**
  * Generated class for the WorkoutPage page.
@@ -76,6 +77,10 @@ export class WorkoutPage {
 
   private newExercicePage() {
     this.navCtrl.push(ExercicePage, { workoutId: this.workoutId });
+  }
+
+  private viewSettingsPage() {
+    this.navCtrl.push(SettingsPage);
   }
 
   private deleteExercice(exerciceId: number) {

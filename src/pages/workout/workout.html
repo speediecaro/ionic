@@ -8,6 +8,12 @@
 
   <ion-navbar>
     <ion-title>{{ pageTitle }}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="viewSettingsPage()">
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -35,7 +41,6 @@
       </ion-item>
     </ion-item-group>
   </ion-list>
-
 
   <button ion-button (tap)="newExercicePage()" icon-start block>
     <ion-icon name="add-circle"></ion-icon>

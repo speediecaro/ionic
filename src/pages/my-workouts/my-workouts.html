@@ -6,8 +6,14 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar hideBackButton>
     <ion-title>Mes entrainements</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="viewSettingsPage()">
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
