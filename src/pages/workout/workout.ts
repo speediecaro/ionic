@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Navbar } from 'ionic-angular';
+import { ViewChild } from '@angular/core';
 import { MyWorkoutsPage } from '../my-workouts/my-workouts';
+import { ExercicePage } from '../exercice/exercice';
 
 /**
  * Generated class for the WorkoutPage page.
@@ -16,10 +19,11 @@ import { MyWorkoutsPage } from '../my-workouts/my-workouts';
   templateUrl: 'workout.html',
 })
 export class WorkoutPage {
+  @ViewChild(Navbar) navBar: Navbar;
+  private pageTitle: string = "Nouvel entrainement";
   private workoutId: number;
   private workout: any;
   private workoutName: string;
-  private pageTitle: string = "Nouvel entrainement";
   private exerciceMax: number;
   private exerciceList: any[];
 
@@ -35,7 +39,7 @@ export class WorkoutPage {
     if(this.workoutId){
       this.workout = await this.storage.get('workout' + this.workoutId);
       
-      if(this.workout) {
+      if(this.workout){
         this.workoutName = this.workout.name;
         this.pageTitle = this.workoutName;
         this.exerciceMax = await this.storage.get('exerciceMax' + this.workoutId);
@@ -45,12 +49,15 @@ export class WorkoutPage {
   }
 
   ionViewDidLoad() {
-    this.navCtrl.remove(this.navCtrl.indexOf(this.navCtrl.getActive()) - 1);
-    this.navCtrl.insert(this.navCtrl.indexOf(this.navCtrl.getActive()) - 1, MyWorkoutsPage);
+    this.navBar.backButtonClick = () => {
+      this.navCtrl.push(MyWorkoutsPage);
+      this.navCtrl.removeView(this.navCtrl.getPrevious(this.navCtrl.getActive()));
+      this.navCtrl.removeView(this.navCtrl.getActive());
+    }
   }
 
-  ionViewCanLeave() {
-    this.saveWorkout();
+  async ionViewCanLeave() {
+    await this.saveWorkout();
   }
 
   private async getExerciceList() {
@@ -64,11 +71,11 @@ export class WorkoutPage {
   }
 
   private viewExercicePage(exerciceId: number) {
-    // this.navCtrl.push(ExercicePage, { workoutId: workoutId, exerciceId: exerciceId });
+    this.navCtrl.push(ExercicePage, { workoutId: this.workoutId, exerciceId: exerciceId });
   }
 
   private newExercicePage() {
-    // this.navCtrl.push(ExercicePage, { workoutId: workoutId });
+    this.navCtrl.push(ExercicePage, { workoutId: this.workoutId });
   }
 
   private deleteExercice(exerciceId: number) {
@@ -76,7 +83,10 @@ export class WorkoutPage {
       .then(() => console.log("Deleted exercice " + this.workoutId + "-" + exerciceId))
       .catch((e) => console.log(e));
 
-    // Reload page
+    this.refresh();
+  }
+
+  private refresh() {
     this.navCtrl.push(this.navCtrl.getActive().component, { workoutId: this.workoutId });
     this.navCtrl.removeView(this.navCtrl.getActive());
   }
@@ -84,11 +94,12 @@ export class WorkoutPage {
   private async saveWorkout() {
     if(!this.workoutName) return;
 
-    var workoutMax: number = await this.storage.get('workoutMax');
     if(!this.workoutId) {
+      var workoutMax: number = await this.storage.get('workoutMax');
       workoutMax++;
       this.workoutId = workoutMax;
       this.storage.set('workoutMax', workoutMax);
+      this.storage.set('exerciceMax' + this.workoutId, 0);
     }
 
     await this.storage.set("workout" + this.workoutId, { id: this.workoutId, name: this.workoutName });

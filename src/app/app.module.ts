@@ -16,6 +16,7 @@ import { PagePrincipalePage } from '../pages/page-principale/page-principale';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SettingsPage } from '../pages/settings/settings';
 import { WorkoutPage } from '../pages/workout/workout';
+import { ExercicePage } from '../pages/exercice/exercice';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { WorkoutPage } from '../pages/workout/workout';
     SettingsPage,
     ProfilPage,
     MyWorkoutsPage,
-    WorkoutPage
+    WorkoutPage,
+    ExercicePage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { WorkoutPage } from '../pages/workout/workout';
     ProfilPage,
     SettingsPage,
     MyWorkoutsPage,
-    WorkoutPage
+    WorkoutPage,
+    ExercicePage
   ],
   providers: [
     StatusBar,
