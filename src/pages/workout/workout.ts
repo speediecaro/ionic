@@ -34,7 +34,7 @@ export class WorkoutPage {
       if(this.workout){
         this.workoutName = this.workout.name;
         this.pageTitle = this.workoutName;
-        this.exerciceMax = parseInt(localStorage.getItem('exerciceMax' + this.workoutId));
+        this.exerciceMax = parseInt(localStorage.getItem('exerciceMax' + this.workoutId), 10);
         this.exerciceList = [];
         this.getExerciceList();
       }
@@ -57,7 +57,7 @@ export class WorkoutPage {
     var temp: any;
     
     for(var i = 0; i <= this.exerciceMax; i++){
-      temp = localStorage.getItem("exercice" + this.workoutId + "-" + i);
+      temp = JSON.parse(localStorage.getItem("exercice" + this.workoutId + "-" + i));
       if (temp) this.exerciceList.push(temp);
     }
   }

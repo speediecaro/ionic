@@ -24,7 +24,7 @@ export class MyWorkoutsPage {
 
   private getWorkoutList() {
     var temp: any;
-    var max: number = parseInt(localStorage.getItem('workoutMax'));
+    var max: number = parseInt(localStorage.getItem('workoutMax'), 10);
     
     for(var i = 0; i <= max; i++){
       temp = JSON.parse(localStorage.getItem("workout" + i));
