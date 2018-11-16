@@ -24,8 +24,8 @@
   <ion-list>
     <ion-item>
       <ion-label>Exercice</ion-label>
-      <ion-select [(ngModel)]="exerciceName">
-        <ion-option *ngFor="let data of exerciceList"  value="data.id">{{data.name}}</ion-option>
+      <ion-select [(ngModel)]="listId">
+        <ion-option *ngFor="let data of exerciceList" value="{{data.id}}">{{data.name}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>

@@ -43,6 +43,7 @@ export class WorkoutPage {
       workoutMax++;
       this.workoutId = workoutMax;
       localStorage.setItem('workoutMax', workoutMax.toString());
+      localStorage.setItem('exerciceMax' + this.workoutId, "0");
     }
   }
 
@@ -92,12 +93,12 @@ export class WorkoutPage {
 
   private saveWorkout() {
     if(!this.workoutName) return;
-    if(!this.workoutId) localStorage.setItem('exerciceMax' + this.workoutId, "0");
 
-    localStorage.setItem(
-      "workout" + this.workoutId,
-      JSON.stringify({ id: this.workoutId, name: this.workoutName })
-    );
+    var data = JSON.stringify({
+      id: this.workoutId, 
+      name: this.workoutName});
+
+    localStorage.setItem("workout" + this.workoutId, data);
   }
 
 }

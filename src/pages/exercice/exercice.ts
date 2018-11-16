@@ -16,9 +16,8 @@ export class ExercicePage {
   private workoutId: number;
   private exerciceId: number;
   private exercice: any;
-  private exerciceName: string;
 
-  private listId: number;
+  private listId: number = 0;
 
   constructor(
     public navCtrl: NavController,
@@ -29,14 +28,22 @@ export class ExercicePage {
     this.workoutId = this.navParams.get('workoutId');
     this.exerciceId = this.navParams.get('exerciceId');
 
+    console.log(this.exerciceId)
+
     if(this.exerciceId){
       this.exercice = JSON.parse(localStorage.getItem("exercice" + this.workoutId + "-" + this.exerciceId));
 
       if(this.exercice){
-        this.exerciceName = this.exercice.name;
-        this.pageTitle = this.exerciceName;
         this.listId = this.exercice.listId;
+        this.pageTitle = this.exercice.name;
       }
+    } else {
+      var exerciceMax: number = parseInt(localStorage.getItem('exerciceMax' + this.workoutId), 10);
+      exerciceMax++;
+      this.exerciceId = exerciceMax;
+      localStorage.setItem('exerciceMax' + this.workoutId, exerciceMax.toString());
+
+      console.log(this.exerciceId)
     }
   }
 
@@ -48,24 +55,30 @@ export class ExercicePage {
     }
   }
 
-  ionViewCanLeave() {
-    this.saveExercice();
+  async ionViewCanLeave() {
+    await this.saveExercice();
   }
 
   private saveExercice() {
-    if(!this.exerciceName) return;
-
-    if(!this.exerciceId){
-      var exerciceMax: number = parseInt(localStorage.getItem('exerciceMax' + this.workoutId), 10);
-      exerciceMax++;
-      this.exerciceId = exerciceMax;
-      localStorage.setItem('exerciceMax' + this.workoutId, exerciceMax.toString());
+    var exerciceName: string = "";
+    var i = 0;
+    while(i < this.exerciceList.length && exerciceName.length == 0){
+      console.log(i);
+      console.log(this.exerciceList[i].id);
+      console.log(this.exerciceList[i].name);
+      if(this.exerciceList[i].id == this.listId)
+        exerciceName = this.exerciceList[i].name;
+      i++
     }
 
-    localStorage.setItem(
-      "exercice" + this.workoutId + "-" + this.exerciceId, 
-      JSON.stringify({ id: this.exerciceId, name: this.exerciceName, listId: this.listId })
-    );
+    var data = JSON.stringify({
+      id: this.exerciceId,
+      name: exerciceName,
+      listId: this.listId});
+
+    console.log(data);
+
+    localStorage.setItem("exercice" + this.workoutId + "-" + this.exerciceId, data);
   }
 
   private categories: any[] = [
@@ -100,209 +113,209 @@ export class ExercicePage {
 
   private exerciceList: any[] = [
     {
-      id:1,
+      id: 1,
       name: "Barbell bicep curls",
       image: "../../assets/imgs/exercices/Barbell-Biceps-Curl-300x146.png",
       category: 1
     },
     {
-      id:2,
+      id: 2,
       name: "Hammer curls",
       image: "../../assets/imgs/exercices/Standing-Dumbbell-Hammer-Curls.png",
       category: 1
     },
     {
-      id:3,
+      id: 3,
       name: "Bicep cable curls",
       image: "../../assets/imgs/exercices/Standing+Biceps+Cable+Curl.png",
       category: 1},
     {
-      id:4,
+      id: 4,
       name: "Concentration curls",
       image: "../../assets/imgs/exercices/One+Arm+Concentration+Curls.jpg",
       category: 1},
     {
-      id:5,
+      id: 5,
       name: "EZ-Bar curls",
       image: "../../assets/imgs/exercices/Standing+EZ+Bar+Curls.jpg",
       category: 1
     },
     {
-      id:6,
+      id: 6,
       name: "Triceps pushdown",
       image: "../../assets/imgs/exercices/Triceps-Pushdown-2.png",
       category: 2
     },
     {
-      id:7,
+      id: 7,
       name: "Skullcruchers",
       image: "../../assets/imgs/exercices/skullcruchers.jpg",
       category: 2
     },
     {
-      id:8,
+      id: 8,
       name: "Close-grip barbell press",
       image: "../../assets/imgs/exercices/closegripppress.jpg",
       category: 2
     },
     {
-      id:9,
+      id: 9,
       name: "Dips",
       image: "../../assets/imgs/exercices/dips.jpg",
       category: 2
     },
     {
-      id:10,
+      id: 10,
       name: "Chair dips",
       image: "../../assets/imgs/exercices/tricep-bench-dips-490x218.jpg",
       category: 2
     },
     {
-      id:11,
+      id: 11,
       name: "Bench press",
       image: "../../assets/imgs/exercices/Flat+Barbell+Bench+Press.jpg",
       category: 3
     },
     {
-      id:12,
+      id: 12,
       name: "Dumbbell chest press",
       image: "../../assets/imgs/exercices/Flat+Dumbbell+Chest+Press.jpg",
       category: 3
     },
     {
-      id:13,
+      id: 13,
       name: "Cable chest fly",
       image: "../../assets/imgs/exercices/chrst fly.jpg",
       category: 3
     },
     {
-      id:14,
+      id: 14,
       name: "Chest pullover",
       image: "../../assets/imgs/exercices/Straight+Arm+Dumbbell+Pullover.png",
       category: 3
     },
     {
-      id:15,
+      id: 15,
       name: "Dumbbell incline fly",
       image: "../../assets/imgs/exercices/dumbbell incline fly.jpg",
       category: 3
     },
     {
-      id:16,
+      id: 16,
       name: "Military press",
       image: "../../assets/imgs/exercices/Seated-Military-Press-1024x629.jpg",
       category: 4
     },
     {
-      id:17,
+      id: 17,
       name: "Shoulder lateral raise",
       image: "../../assets/imgs/exercices/hsoulder lateral raise.jpg",
       category: 4
     },
     {
-      id:18,
+      id: 18,
       name: "Rear cable fly",
       image: "../../assets/imgs/exercices/Standing+Cable+Rear+Delt+Fly.jpg",
       category: 4
     },
     {
-      id:19,
+      id: 19,
       name: "Cable lateral raises",
       image: "../../assets/imgs/exercices/cable lateral raise.jpg",
       category: 4
     },
     {
-      id:20,
+      id: 20,
       name: "Inverted peck-deck",
       image: "../../assets/imgs/exercices/inverted peck deck.jpg",
       category: 4
     },
     {
-      id:21,
+      id: 21,
       name: "Squat",
       image: "../../assets/imgs/exercices/front squat.jpg",
       category: 5
     },
     {
-      id:22,
+      id: 22,
       name: "Front squat",
       image: "../../assets/imgs/exercices/front squat.jpg",
       category: 5
     },
     {
-      id:23,
+      id: 23,
       name: "Leg extension",
       image: "../../assets/imgs/exercices/leg-extension.jpg",
       category: 5
     },
     {
-      id:24,
+      id: 24,
       name: "Leg curl",
       image: "../../assets/imgs/exercices/leg curl.jpg",
       category: 5
     },
     {
-      id:25,
+      id: 25,
       name: "Weighted Lunges",
       image: "../../assets/imgs/exercices/dumbbell-lunges.png",
       category: 5
     },
     {
-      id:26,
+      id: 26,
       name: "Crunches",
       image: "../../assets/imgs/exercices/Crunches.jpg",
       category: 6
     },
     {
-      id:27,
+      id: 27,
       name: "Front leg raises",
       image: "../../assets/imgs/exercices/leg raise.png",
       category: 6
     },
     {
-      id:28,
+      id: 28,
       name: "Plank",
       image: "../../assets/imgs/exercices/Prone+Plank.png",
       category: 6
     },
     {
-      id:29,
+      id: 29,
       name: "Flutter kicks",
       image: "../../assets/imgs/exercices/Flutter+Kicks.png",
       category: 6
     },
     {
-      id:30,
+      id: 30,
       name: "Bicycle crunches",
       image: "../../assets/imgs/exercices/Air+Bike.png",
       category: 6
     },
     {
-      id:31,
+      id: 31,
       name: "Pullups",
       image: "../../assets/imgs/exercices/pulllups.jpg",
       category: 7
     },
     {
-      id:32,
+      id: 32,
       name: "Deadlift",
       image: "../../assets/imgs/exercices/deadlift.jpg",
       category: 7
     },
     {
-      id:33,
+      id: 33,
       name: "Bent over rows",
       image: "../../assets/imgs/exercices/Barbell+Underhand+Bent+Over+Row.png",
       category: 7
     },
     {
-      id:34,
+      id: 34,
       name: "Lats pulldowns",
       image: "../../assets/imgs/exercices/Overhand+Grip+Lat+Pulldown.jpg",
       category: 7
     },
     {
-      id:35,
+      id: 35,
       name: "Single arm dumbbell rows",
       image: "../../assets/imgs/exercices/One+Arm+Dumbbell+Row.jpg",
       category: 7
