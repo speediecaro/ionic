@@ -38,6 +38,11 @@ export class WorkoutPage {
         this.exerciceList = [];
         this.getExerciceList();
       }
+    } else {
+      var workoutMax: number = parseInt(localStorage.getItem('workoutMax'), 10);
+      workoutMax++;
+      this.workoutId = workoutMax;
+      localStorage.setItem('workoutMax', workoutMax.toString());
     }
   }
 
@@ -87,14 +92,7 @@ export class WorkoutPage {
 
   private saveWorkout() {
     if(!this.workoutName) return;
-
-    if(!this.workoutId) {
-      var workoutMax: number = parseInt(localStorage.getItem('workoutMax'), 10);
-      workoutMax++;
-      this.workoutId = workoutMax;
-      localStorage.setItem('workoutMax', workoutMax.toString());
-      localStorage.setItem('exerciceMax' + this.workoutId, "0");
-    }
+    if(!this.workoutId) localStorage.setItem('exerciceMax' + this.workoutId, "0");
 
     localStorage.setItem(
       "workout" + this.workoutId,

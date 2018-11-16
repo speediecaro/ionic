@@ -21,12 +21,6 @@ export class MyApp {
 
       statusBar.styleDefault();
       splashScreen.hide();
-
-      localStorage.setItem('workoutMax', "1");
-      localStorage.setItem("workout1", JSON.stringify({ id: 1, name: 'Workout Test' }));
-
-      localStorage.setItem('exerciceMax1', "1");
-      localStorage.setItem("exercice1-1", JSON.stringify({ id: 1, name: 'Exercice Test' }));
     });
   }
 

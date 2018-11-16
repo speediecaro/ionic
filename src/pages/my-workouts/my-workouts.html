@@ -22,11 +22,11 @@
 <ion-content padding> 
 
   <ion-list>
-    <ion-item *ngFor="let workout of workoutList" (tap)="viewWorkoutPage(workout.id)">
-        <ion-avatar item-start>
+    <ion-item *ngFor="let workout of workoutList">
+        <ion-avatar item-start (tap)="viewWorkoutPage(workout.id)">
           <img src="assets/imgs/gym1.png">
         </ion-avatar>
-        <h2>{{workout.name}}</h2>
+        <h2 (tap)="viewWorkoutPage(workout.id)">{{workout.name}}</h2>
         <button ion-button icon-only item-end clear (tap)="deleteWorkout(workout.id, $event)" color="primary">
           <ion-icon name="trash"></ion-icon>
         </button>
