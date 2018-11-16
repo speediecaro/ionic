@@ -16,8 +16,7 @@ export class ExercicePage {
   private workoutId: number;
   private exerciceId: number;
   private exercice: any;
-
-  private listId: number = 0;
+  private exerciceName: string;
 
   constructor(
     public navCtrl: NavController,
@@ -28,13 +27,11 @@ export class ExercicePage {
     this.workoutId = this.navParams.get('workoutId');
     this.exerciceId = this.navParams.get('exerciceId');
 
-    console.log(this.exerciceId)
-
     if(this.exerciceId){
       this.exercice = JSON.parse(localStorage.getItem("exercice" + this.workoutId + "-" + this.exerciceId));
 
       if(this.exercice){
-        this.listId = this.exercice.listId;
+        this.exerciceName = this.exercice.name;
         this.pageTitle = this.exercice.name;
       }
     } else {
@@ -42,8 +39,6 @@ export class ExercicePage {
       exerciceMax++;
       this.exerciceId = exerciceMax;
       localStorage.setItem('exerciceMax' + this.workoutId, exerciceMax.toString());
-
-      console.log(this.exerciceId)
     }
   }
 
@@ -60,23 +55,11 @@ export class ExercicePage {
   }
 
   private saveExercice() {
-    var exerciceName: string = "";
-    var i = 0;
-    while(i < this.exerciceList.length && exerciceName.length == 0){
-      console.log(i);
-      console.log(this.exerciceList[i].id);
-      console.log(this.exerciceList[i].name);
-      if(this.exerciceList[i].id == this.listId)
-        exerciceName = this.exerciceList[i].name;
-      i++
-    }
+    if(!this.exerciceName) return;
 
     var data = JSON.stringify({
       id: this.exerciceId,
-      name: exerciceName,
-      listId: this.listId});
-
-    console.log(data);
+      name: this.exerciceName});
 
     localStorage.setItem("exercice" + this.workoutId + "-" + this.exerciceId, data);
   }

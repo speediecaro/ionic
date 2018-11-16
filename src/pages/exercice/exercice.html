@@ -8,12 +8,6 @@
 
   <ion-navbar>
     <ion-title>{{ pageTitle }}</ion-title>
-
-    <ion-buttons end>
-      <button ion-button icon-only (tap)="viewSettingsPage()">
-        <ion-icon name="settings"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -24,8 +18,8 @@
   <ion-list>
     <ion-item>
       <ion-label>Exercice</ion-label>
-      <ion-select [(ngModel)]="listId">
-        <ion-option *ngFor="let data of exerciceList" value="{{data.id}}">{{data.name}}</ion-option>
+      <ion-select [(ngModel)]="exerciceName">
+        <ion-option *ngFor="let data of exerciceList" value="{{data.name}}">{{data.name}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
