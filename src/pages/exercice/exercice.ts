@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 import { Navbar } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 import { WorkoutPage } from '../workout/workout';
@@ -22,18 +21,17 @@ export class ExercicePage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
-    private storage: Storage) {
+    public navParams: NavParams) {
   }
 
-  async ionViewWillEnter() {
+  ionViewWillEnter() {
     this.workoutId = this.navParams.get('workoutId');
     this.exerciceId = this.navParams.get('exerciceId');
 
     if(this.exerciceId){
-      this.exercice = await this.storage.get("exercice" + this.workoutId + "-" + this.exerciceId);
+      this.exercice = JSON.parse(localStorage.getItem("exercice" + this.workoutId + "-" + this.exerciceId));
 
-      if(this.exercice){
+      if(this.exercice.name){
         this.exerciceName = this.exercice.name;
         this.pageTitle = this.exerciceName;
       }
@@ -48,23 +46,24 @@ export class ExercicePage {
     }
   }
 
-  async ionViewCanLeave() {
-    await this.saveExercice();
+  ionViewCanLeave() {
+    this.saveExercice();
   }
 
-  private async saveExercice() {
+  private saveExercice() {
     if(!this.exerciceName) return;
 
     if(!this.exerciceId){
-      var exerciceMax: number = await this.storage.get('exerciceMax' + this.workoutId);
+      var exerciceMax: number = parseInt(localStorage.getItem('exerciceMax' + this.workoutId), 10);
       exerciceMax++;
       this.exerciceId = exerciceMax;
-      this.storage.set('exerciceMax' + this.workoutId, exerciceMax);
+      localStorage.setItem('exerciceMax' + this.workoutId, exerciceMax.toString());
     }
 
-    await this.storage.set("exercice" + this.workoutId + "-" + this.exerciceId, { id: this.exerciceId, name: this.exerciceName })
-      .then(() => {})
-      .catch((e) => console.log(e));
+    localStorage.setItem(
+      "exercice" + this.workoutId + "-" + this.exerciceId, 
+      JSON.stringify({ id: this.exerciceId, name: this.exerciceName })
+    );
   }
 
   private viewSettingsPage() {

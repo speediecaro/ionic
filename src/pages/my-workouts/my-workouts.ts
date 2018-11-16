@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 import { WorkoutPage } from '../workout/workout';
 import { SettingsPage } from '../settings/settings';
 
@@ -15,21 +14,20 @@ export class MyWorkoutsPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
-    private storage: Storage) {
+    public navParams: NavParams) {
   }
 
-  async ionViewWillEnter() {
+  ionViewWillEnter() {
     this.workoutList = [];
-    await this.getWorkoutList();
+    this.getWorkoutList();
   }
 
-  private async getWorkoutList() {
+  private getWorkoutList() {
     var temp: any;
-    var max: number = await this.storage.get('workoutMax');
+    var max: number = parseInt(localStorage.getItem('workoutMax'));
     
     for(var i = 0; i <= max; i++){
-      temp = await this.storage.get("workout" + i);
+      temp = localStorage.getItem("workout" + i);
       if (temp) this.workoutList.push(temp);
     }
   }
@@ -48,9 +46,7 @@ export class MyWorkoutsPage {
   }
 
   private deleteWorkout(workoutId: number) {
-    this.storage.remove("workout" + workoutId)
-      .then(() => console.log("Deleted workout " + workoutId))
-      .catch((e) => console.log(e));
+    localStorage.removeItem("workout" + workoutId)
 
     // Reload page
     this.navCtrl.push(this.navCtrl.getActive().component);
