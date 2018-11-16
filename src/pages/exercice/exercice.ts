@@ -31,7 +31,7 @@ export class ExercicePage {
     if(this.exerciceId){
       this.exercice = JSON.parse(localStorage.getItem("exercice" + this.workoutId + "-" + this.exerciceId));
 
-      if(this.exercice.name){
+      if(this.exercice){
         this.exerciceName = this.exercice.name;
         this.pageTitle = this.exerciceName;
       }

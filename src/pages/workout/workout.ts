@@ -29,7 +29,7 @@ export class WorkoutPage {
     this.workoutId = this.navParams.get('workoutId');
 
     if(this.workoutId){
-      this.workout = localStorage.getItem('workout' + this.workoutId);
+      this.workout = JSON.parse(localStorage.getItem('workout' + this.workoutId));
       
       if(this.workout){
         this.workoutName = this.workout.name;
@@ -89,7 +89,7 @@ export class WorkoutPage {
     if(!this.workoutName) return;
 
     if(!this.workoutId) {
-      var workoutMax: number = parseInt(localStorage.getItem('workoutMax'));
+      var workoutMax: number = parseInt(localStorage.getItem('workoutMax'), 10);
       workoutMax++;
       this.workoutId = workoutMax;
       localStorage.setItem('workoutMax', workoutMax.toString());
