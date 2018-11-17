@@ -32,7 +32,7 @@
       <ion-item-divider>Exercices</ion-item-divider>
         <ion-item *ngFor="let exercice of exerciceList">
           <ion-avatar item-start (tap)="viewExercicePage(exercice.id)">
-            <img src="assets/imgs/gym1.png">
+            <img src="{{exercice.image}}">
           </ion-avatar>
           <h2 (tap)="viewExercicePage(exercice.id)">{{exercice.name}}</h2>
           <button ion-button icon-only clear item-end (tap)="deleteExercice(exercice.id)" color="primary">

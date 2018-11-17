@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Navbar } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 import { WorkoutPage } from '../workout/workout';
-import { SettingsPage } from '../settings/settings';
 
 @IonicPage()
 @Component({
@@ -17,6 +16,7 @@ export class ExercicePage {
   private exerciceId: number;
   private exercice: any;
   private exerciceName: string;
+  private image: string = "";
 
   constructor(
     public navCtrl: NavController,
@@ -33,6 +33,7 @@ export class ExercicePage {
       if(this.exercice){
         this.exerciceName = this.exercice.name;
         this.pageTitle = this.exercice.name;
+        this.selectExercice();
       }
     } else {
       var exerciceMax: number = parseInt(localStorage.getItem('exerciceMax' + this.workoutId), 10);
@@ -59,9 +60,20 @@ export class ExercicePage {
 
     var data = JSON.stringify({
       id: this.exerciceId,
-      name: this.exerciceName});
+      name: this.exerciceName,
+      image: this.image});
 
     localStorage.setItem("exercice" + this.workoutId + "-" + this.exerciceId, data);
+  }
+
+  private selectExercice() {
+    var image: string = "";
+    var i = 0;
+    while(i < this.exerciceList.length && image.length == 0){
+      if(this.exerciceList[i].name == this.exerciceName)
+        this.image = this.exerciceList[i].image;
+      i++;
+    }
   }
 
   private categories: any[] = [
