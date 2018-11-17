@@ -26,6 +26,7 @@
         <ion-avatar item-start (tap)="viewWorkoutPage(workout.id)">
           <img src="assets/imgs/gym1.png">
         </ion-avatar>
+        <!-- <ion-icon item-start name="clipboard"></ion-icon>   -->
         <h2 (tap)="viewWorkoutPage(workout.id)">{{workout.name}}</h2>
         <button ion-button icon-only item-end clear (tap)="deleteWorkout(workout.id, $event)" color="primary">
           <ion-icon name="trash"></ion-icon>
