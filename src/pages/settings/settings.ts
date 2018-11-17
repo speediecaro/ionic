@@ -34,6 +34,10 @@ export class SettingsPage {
     this.afficherProfile();
   }
 
+  ionViewCanLeave(){
+    this.addProfile();
+  }
+
   reinitProfile(): boolean {
     localStorage.removeItem("firstname");
     localStorage.removeItem("lastname");
@@ -77,7 +81,6 @@ export class SettingsPage {
   }
 
   goPagePrincipale() {
-    this.addProfile();
     this.nav.push(MyWorkoutsPage);
     this.nav.removeView(this.nav.getActive());
   }
