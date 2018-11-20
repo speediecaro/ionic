@@ -35,7 +35,7 @@ export class SettingsPage {
   }
 
   ionViewCanLeave(){
-    this.addProfile();
+    //this.addProfile();
   }
 
   reinitProfile(): boolean {
@@ -81,6 +81,7 @@ export class SettingsPage {
   }
 
   goPagePrincipale() {
+    this.addProfile();
     this.nav.push(MyWorkoutsPage);
     this.nav.removeView(this.nav.getActive());
   }
