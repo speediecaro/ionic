@@ -8,7 +8,6 @@ import { MyWorkoutsPage } from '../my-workouts/my-workouts';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-  nav: NavController;
   prenom: any;
   nom: any;
   courriel: any;
@@ -20,14 +19,7 @@ export class SettingsPage {
   pouces: any;
   objectifs: any;
 
-  //public toast: ToastController;
-
-  static get parameters() {
-    return [[NavController]];
-  }
-
-  constructor(nav: NavController, public alertCtrl: AlertController) {
-    this.nav = nav;
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
   }
 
   ionViewWillEnter() {
@@ -77,9 +69,22 @@ export class SettingsPage {
   }
 
   goPagePrincipale() {
+    if(this.nom == "undefined" || this.nom == "" || this.nom == "null" || this.prenom == "undefined" || this.prenom == "" || this.prenom == "null"){
+      this.showAlert();
+      return;
+    }
     this.addProfile();
-    this.nav.push(MyWorkoutsPage);
-    this.nav.removeView(this.nav.getActive());
+    this.navCtrl.push(MyWorkoutsPage);
+    this.navCtrl.removeView(this.navCtrl.getActive());
+  }
+
+  showAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'Erreur !',
+      subTitle: 'Les champs nom et prénom sont requis.',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }
