@@ -51,8 +51,8 @@ export class ExercicePage {
     }
   }
 
-  async ionViewCanLeave() {
-    await this.saveExercice();
+  ionViewCanLeave() {
+    this.saveExercice();
   }
 
   private saveExercice() {
