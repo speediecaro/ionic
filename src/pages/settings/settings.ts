@@ -34,10 +34,6 @@ export class SettingsPage {
     this.afficherProfile();
   }
 
-  ionViewCanLeave(){
-    //this.addProfile();
-  }
-
   reinitProfile(): boolean {
     localStorage.removeItem("firstname");
     localStorage.removeItem("lastname");
