@@ -5,10 +5,11 @@
 </ion-header>
 
 <ion-content padding class = "home">
-  <h2>Création du profil utilisateur. Bienvenue sur FitMe!</h2>
-  <p>
-    Créer votre profil afin de pouvoir utiliser FitMe.
-  </p>
+  <div [hidden]="prenom">
+    <h2>Bienvenue sur FitMe!</h2>
+    <p>Créer votre profil afin de pouvoir utiliser FitMe.</p>
+  </div>
+  
   <ion-list>
     <ion-item>
       <ion-label flotting>Prenom</ion-label>
@@ -84,6 +85,6 @@
     </ion-item>
   </ion-list>
   <ion-buttons>
-      <button ion-button (click)="goPagePrincipale()">Enregistrer</button>
+      <button ion-button (click)="goPagePrincipale()">Sauvegarder</button>
   </ion-buttons>
 </ion-content>

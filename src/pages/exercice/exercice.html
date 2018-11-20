@@ -15,10 +15,16 @@
 
 <ion-content padding>
 
+    <ion-card [hidden]="(image.length == 0)">
+      <img src="{{image}}"/>
+    </ion-card>
+
   <ion-list>
     <ion-item>
-      <ion-label>Nom</ion-label>
-      <ion-input type="text" [(ngModel)]="exerciceName"></ion-input>
+      <ion-label>Exercice</ion-label>
+      <ion-select [(ngModel)]="exerciceName" (ionChange)="selectExercice()">
+        <ion-option *ngFor="let data of exerciceList" value="{{data.name}}">{{data.name}}</ion-option>
+      </ion-select>
     </ion-item>
   </ion-list>
 
