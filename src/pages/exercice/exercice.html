@@ -27,9 +27,9 @@
       </ion-select>
     </ion-item>
 
-    <ion-item>
+    <ion-item [hidden]="(category.length == 0)">
         <ion-label>Catégorie</ion-label>
-        <ion-input type="text" [ngModel]="category" [hidden]="(category.length == 0)" readonly></ion-input>
+        <ion-input type="text" [(ngModel)]="category" readonly></ion-input>
       </ion-item>
   </ion-list>
 

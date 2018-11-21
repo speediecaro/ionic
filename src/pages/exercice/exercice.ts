@@ -17,6 +17,7 @@ export class ExercicePage {
   private exercice: any;
   private exerciceName: string;
   private image: string = "";
+  private categoryId: number;
   private category: string = "";
   private setsNumber: number = 4;
   private repsNumber: number = 20;
@@ -78,13 +79,20 @@ export class ExercicePage {
   }
 
   private selectExercice() {
-    var image: string = "";
     var i = 0;
-    while(i < this.exerciceList.length && image.length == 0){
-      if(this.exerciceList[i].name == this.exerciceName)
+    while(i < this.exerciceList.length){
+      if(this.exerciceList[i].name == this.exerciceName){
         this.image = this.exerciceList[i].image;
-        this.category = this.exerciceList[i].category;
+        this.categoryId = this.exerciceList[i].category;
+      }
       i++;
+    }
+
+    var j = 0;
+    while(j < this.categories.length){
+      if(this.categories[j].id == this.categoryId)
+        this.category = this.categories[j].name;
+      j++;
     }
   }
 

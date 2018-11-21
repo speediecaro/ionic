@@ -69,7 +69,7 @@ export class SettingsPage {
   }
 
   goPagePrincipale() {
-    if(this.nom == "undefined" || this.nom == "" || this.nom == "null" || this.prenom == "undefined" || this.prenom == "" || this.prenom == "null"){
+    if(this.nom == null || this.nom == "undefined" || this.nom == "" || this.nom == "null" || this.prenom == null || this.prenom == "undefined" || this.prenom == "" || this.prenom == "null"){
       this.showAlert();
       return;
     }
