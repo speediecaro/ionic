@@ -17,6 +17,10 @@ export class ExercicePage {
   private exercice: any;
   private exerciceName: string;
   private image: string = "";
+  private category: string = "";
+  private setsNumber: number = 4;
+  private repsNumber: number = 20;
+  private weight: number;
 
   constructor(
     public navCtrl: NavController,
@@ -31,8 +35,11 @@ export class ExercicePage {
       this.exercice = JSON.parse(localStorage.getItem("exercice" + this.workoutId + "-" + this.exerciceId));
 
       if(this.exercice){
-        this.exerciceName = this.exercice.name;
         this.pageTitle = this.exercice.name;
+        this.exerciceName = this.exercice.name;
+        this.setsNumber = this.exercice.sets;
+        this.repsNumber = this.exercice.reps;
+        this.weight = this.exercice.weight;
         this.selectExercice();
       }
     } else {
@@ -61,7 +68,11 @@ export class ExercicePage {
     var data = JSON.stringify({
       id: this.exerciceId,
       name: this.exerciceName,
-      image: this.image});
+      image: this.image,
+      category: this.category,
+      sets: this.setsNumber,
+      reps: this.repsNumber,
+      weight: this.weight});
 
     localStorage.setItem("exercice" + this.workoutId + "-" + this.exerciceId, data);
   }
@@ -72,6 +83,7 @@ export class ExercicePage {
     while(i < this.exerciceList.length && image.length == 0){
       if(this.exerciceList[i].name == this.exerciceName)
         this.image = this.exerciceList[i].image;
+        this.category = this.exerciceList[i].category;
       i++;
     }
   }
