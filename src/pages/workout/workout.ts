@@ -68,6 +68,10 @@ export class WorkoutPage {
     }
   }
 
+  reorderItems(indexes) {
+    this.exerciceList.splice(indexes.to, 0, this.exerciceList.splice(indexes.from, 1)[0]);
+ }
+
   private viewExercicePage(exerciceId: number) {
     this.navCtrl.push(ExercicePage, { workoutId: this.workoutId, exerciceId: exerciceId });
   }
