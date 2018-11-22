@@ -70,7 +70,15 @@ export class WorkoutPage {
 
   reorderItems(indexes) {
     this.exerciceList.splice(indexes.to, 0, this.exerciceList.splice(indexes.from, 1)[0]);
- }
+    this.setExerciceList(indexes);
+  }
+  private setExerciceList(indexes) {
+    let fromId = localStorage.getItem("exercice" + this.workoutId + "-" + (parseInt(indexes.from)+1));
+    let toId = localStorage.getItem("exercice" + this.workoutId + "-" + (parseInt(indexes.to) + 1));
+    localStorage.setItem("exercice" + this.workoutId + "-" + (parseInt(indexes.from) + 1), toId);
+    localStorage.setItem("exercice" + this.workoutId + "-" + (parseInt(indexes.to) + 1), fromId); 
+  }
+
 
   private viewExercicePage(exerciceId: number) {
     this.navCtrl.push(ExercicePage, { workoutId: this.workoutId, exerciceId: exerciceId });
