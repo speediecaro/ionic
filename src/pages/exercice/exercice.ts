@@ -17,6 +17,11 @@ export class ExercicePage {
   private exercice: any;
   private exerciceName: string;
   private image: string = "";
+  private categoryId: number;
+  private category: string = "";
+  private setsNumber: number = 4;
+  private repsNumber: number = 20;
+  private weight: number;
 
   constructor(
     public navCtrl: NavController,
@@ -31,8 +36,11 @@ export class ExercicePage {
       this.exercice = JSON.parse(localStorage.getItem("exercice" + this.workoutId + "-" + this.exerciceId));
 
       if(this.exercice){
-        this.exerciceName = this.exercice.name;
         this.pageTitle = this.exercice.name;
+        this.exerciceName = this.exercice.name;
+        this.setsNumber = this.exercice.sets;
+        this.repsNumber = this.exercice.reps;
+        this.weight = this.exercice.weight;
         this.selectExercice();
       }
     } else {
@@ -61,18 +69,30 @@ export class ExercicePage {
     var data = JSON.stringify({
       id: this.exerciceId,
       name: this.exerciceName,
-      image: this.image});
+      image: this.image,
+      category: this.category,
+      sets: this.setsNumber,
+      reps: this.repsNumber,
+      weight: this.weight});
 
     localStorage.setItem("exercice" + this.workoutId + "-" + this.exerciceId, data);
   }
 
   private selectExercice() {
-    var image: string = "";
     var i = 0;
-    while(i < this.exerciceList.length && image.length == 0){
-      if(this.exerciceList[i].name == this.exerciceName)
+    while(i < this.exerciceList.length){
+      if(this.exerciceList[i].name == this.exerciceName){
         this.image = this.exerciceList[i].image;
+        this.categoryId = this.exerciceList[i].category;
+      }
       i++;
+    }
+
+    var j = 0;
+    while(j < this.categories.length){
+      if(this.categories[j].id == this.categoryId)
+        this.category = this.categories[j].name;
+      j++;
     }
   }
 

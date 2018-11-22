@@ -17,7 +17,13 @@ export class MyApp {
       
       // Verify if profile exists
       var temp = localStorage.getItem("firstname");
-      if(temp != "undefined" && temp != "") this.rootPage = MyWorkoutsPage;
+      if(temp && temp != "undefined" && temp != "" && temp != "null")
+        this.rootPage = MyWorkoutsPage;
+
+      // Verify workout max
+      var workoutMax = localStorage.getItem('workoutMax');
+      if(!workoutMax || workoutMax == "undefined" || workoutMax == "" || workoutMax == "null")
+        localStorage.setItem('workoutMax', "0");
 
       statusBar.styleDefault();
       splashScreen.hide();

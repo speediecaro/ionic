@@ -28,19 +28,17 @@
       </ion-item>
     </ion-list>
 
-    <h3>Exercices</h3>
-
   <ion-card *ngFor="let exercice of exerciceList">
       <ion-card-content (tap)="viewExercicePage(exercice.id)">
         <h2>{{exercice.name}}</h2>
-        <p>Catégorie : Bras</p>
+        <p>Catégorie : {{exercice.category}}</p>
       </ion-card-content>
 
       <img src="{{exercice.image}}" (tap)="viewExercicePage(exercice.id)">
 
       <ion-card-content (tap)="viewExercicePage(exercice.id)">
-        <p>Set: 4 Rep: 20</p>
-        <p>Poids: aucun</p>
+        <p>Séries : {{exercice.sets}} Répétitions : {{exercice.reps}}</p>
+        <p>Poids : {{exercice.weight}}</p>
       </ion-card-content>
 
       <ion-row>
