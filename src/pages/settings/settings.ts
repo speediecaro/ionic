@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { MyWorkoutsPage } from '../my-workouts/my-workouts';
-import { EmailValidator } from '../../validators/email';
-import { isNumber } from 'ionic-angular/umd/util/util';
 
 @Component({
   selector: 'page-settings',
@@ -77,7 +75,7 @@ export class SettingsPage {
     }
       //.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')
     let regexEmail = new RegExp('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$');
-    if (this.courriel != "" && this.courriel != null && this.courriel != "undefined") {
+    if (this.courriel != "" && this.courriel != " " && this.courriel != null && this.courriel != "undefined") {
       if (regexEmail.test(this.courriel) == false) {
         this.showAlertMessage('Veuillez entrer un courriel valide.');
         return;
