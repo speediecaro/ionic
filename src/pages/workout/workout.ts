@@ -131,7 +131,8 @@ export class WorkoutPage {
 
     localStorage.setItem("exercice" + this.workoutId + "-" + this.exerciceList[indexes.from].id, JSON.stringify(dataFrom));
     localStorage.setItem("exercice" + this.workoutId + "-" + this.exerciceList[indexes.to].id, JSON.stringify(dataTo));
-    
+
+    this.refresh();
   }
 
 
@@ -148,8 +149,9 @@ export class WorkoutPage {
   }
 
   private deleteExercice(exerciceId: number) {
-    localStorage.removeItem("exercice" + this.workoutId + "-" + exerciceId)
 
+    localStorage.removeItem("exercice" + this.workoutId + "-" + exerciceId)
+    
     this.refresh();
   }
 
