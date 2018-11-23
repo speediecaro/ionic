@@ -86,8 +86,8 @@ export class WorkoutPage {
 
     // Garder toutes les variables en mémoire temporairement pour interchanger les valeurs seulement
     //{"id":2,"name":"Dumbbell","image":"fly.jpg","category":"Chest","sets":4,"reps":20,"weight":"100"}
-    const dataTo = JSON.parse(toId);
-    const dataFrom = JSON.parse(fromId);
+    var dataTo = JSON.parse(toId);
+    var dataFrom = JSON.parse(fromId);
 
     //let tempTo:number = dataTo["id"];
     const tname = dataTo["name"];
