@@ -29,47 +29,45 @@
   </ion-list>
 
   <div class="content has-header">
-   
-    <ion-list>
+      <button ion-button float-right (click)="afficherOrdre($event)">Ordre</button>
+      <ion-list>
+        <ion-item-group [reorder]="shouldShowReorder" show-reorder="true" (ionItemReorder)="reorderItems($event)">
+          <ion-card *ngFor="let exercice of exerciceList">
 
-      <ion-item-group reorder="true" show-reorder="true" (ionItemReorder)="reorderItems($event)">
-        <ion-card *ngFor="let exercice of exerciceList">
+            <ion-item>
 
-          <ion-item>
-          
-          <ion-card-content (tap)="viewExercicePage(exercice.id)">
-            <h2>{{exercice.name}}</h2>
-            <p>Catégorie : {{exercice.category}}</p>
-          </ion-card-content>
+              <ion-card-content (tap)="viewExercicePage(exercice.id)">
+                <h2>{{exercice.name}}</h2>
+                <p>Catégorie : {{exercice.category}}</p>
+              </ion-card-content>
 
 
-          <img src="{{exercice.image}}" (tap)="viewExercicePage(exercice.id)">
+              <img src="{{exercice.image}}" (tap)="viewExercicePage(exercice.id)">
 
-          <ion-card-content (tap)="viewExercicePage(exercice.id)">
-            <p>Séries : {{exercice.sets}} Répétitions : {{exercice.reps}}</p>
-            <p>Poids : {{exercice.weight}}</p>
-          </ion-card-content>
+              <ion-card-content (tap)="viewExercicePage(exercice.id)">
+                <p>Séries : {{exercice.sets}} Répétitions : {{exercice.reps}}</p>
+                <p>Poids : {{exercice.weight}}</p>
+              </ion-card-content>
 
-          <ion-row>
-            <ion-col>
-              <button ion-button icon-start clear full small (tap)="viewExercicePage(exercice.id)">
-                <ion-icon name="create"></ion-icon>
-                Modifier
-              </button>
-            </ion-col>
-            <ion-col>
-              <button ion-button icon-start clear full small (tap)="deleteExercice(exercice.id)">
-                <ion-icon name="trash"></ion-icon>
-                Effacer
-              </button>
-            </ion-col>
-          </ion-row>
-         </ion-item>
-        </ion-card>
-      </ion-item-group>
-
-    </ion-list>
-  </div>
+              <ion-row>
+                <ion-col>
+                  <button ion-button icon-start clear full small (tap)="viewExercicePage(exercice.id)">
+                    <ion-icon name="create"></ion-icon>
+                    Modifier
+                  </button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button icon-start clear full small (tap)="deleteExercice(exercice.id)">
+                    <ion-icon name="trash"></ion-icon>
+                    Effacer
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-item>
+          </ion-card>
+        </ion-item-group>
+      </ion-list>
+    </div>
 
     <button ion-button (tap)="newExercicePage()" icon-start block>
       <ion-icon name="add-circle"></ion-icon>
