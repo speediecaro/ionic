@@ -11,6 +11,7 @@ import { SettingsPage } from '../settings/settings';
   selector: 'page-workout',
   templateUrl: 'workout.html',
 })
+
 export class WorkoutPage {
   @ViewChild(Navbar) navBar: Navbar;
   private pageTitle: string = "Nouvel entrainement";
@@ -19,7 +20,8 @@ export class WorkoutPage {
   private workoutName: string;
   private exerciceMax: number;
   private exerciceList: any[];
-  public shouldShowReorder: any = true;
+  private ORDRE_DEFAUT = false;
+  public shouldShowReorder: any = this.ORDRE_DEFAUT;
 
   constructor(
     public navCtrl: NavController,
@@ -39,8 +41,8 @@ export class WorkoutPage {
         this.exerciceList = [];
         this.getExerciceList();
         //test voir
-        this.shouldShowReorder = "true";
-        localStorage.setItem("shouldShowReorder", "true");
+        this.shouldShowReorder = String(this.ORDRE_DEFAUT);
+        localStorage.setItem("shouldShowReorder", String(this.ORDRE_DEFAUT));
       }
     } else {
       var workoutMax: number = parseInt(localStorage.getItem('workoutMax'), 10);
@@ -160,8 +162,8 @@ export class WorkoutPage {
     this.navCtrl.push(this.navCtrl.getActive().component, { workoutId: this.workoutId });
     this.navCtrl.removeView(this.navCtrl.getActive());
     //Ici, vu que ça reset la vue et qu'on remet le reorder à true par défaut, on doit le dire aux variables.
-    this.shouldShowReorder = "true";
-    localStorage.setItem("shouldShowReorder", "true");
+    this.shouldShowReorder = String(this.ORDRE_DEFAUT);
+    localStorage.setItem("shouldShowReorder", String(this.ORDRE_DEFAUT));
   }
 
   private saveWorkout() {
