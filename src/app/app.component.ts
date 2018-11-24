@@ -5,12 +5,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { SettingsPage } from '../pages/settings/settings';
 import { MyWorkoutsPage } from '../pages/my-workouts/my-workouts';
+import { SubscriptionPage } from '../pages/subscription/subscription';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = SettingsPage;
+  rootPage:any = SubscriptionPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

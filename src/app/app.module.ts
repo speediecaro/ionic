@@ -13,6 +13,7 @@ import { MyWorkoutsPage } from './../pages/my-workouts/my-workouts';
 import { WorkoutPage } from '../pages/workout/workout';
 import { ExercicePage } from '../pages/exercice/exercice';
 import { HelpPage } from '../pages/help/help';
+import { SubscriptionPage } from '../pages/subscription/subscription';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HelpPage } from '../pages/help/help';
     MyWorkoutsPage,
     WorkoutPage,
     ExercicePage,
-    HelpPage
+    HelpPage,
+    SubscriptionPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { HelpPage } from '../pages/help/help';
     MyWorkoutsPage,
     WorkoutPage,
     ExercicePage,
-    HelpPage
+    HelpPage,
+    SubscriptionPage
   ],
   providers: [
     StatusBar,

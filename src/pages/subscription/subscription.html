@@ -1,0 +1,49 @@
+<!--
+  Generated template for the SubscriptionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Abonnement</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div text-center>
+      <button ion-button (click)="continue()">Continuer en tant qu'invité</button>
+
+      <p padding-top>ou abonnez-vous :</p>
+  </div>
+      
+      <ion-list>
+        <ion-item>
+          <ion-label flotting>Prenom</ion-label>
+          <ion-input [(ngModel)]="prenom" name="prenom" type="text" value=""></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label flotting>Nom</ion-label>
+          <ion-input [(ngModel)]="nom" name="nom" type="text" value=""></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floatting>Courriel (optionnel)</ion-label>
+          <ion-input [(ngModel)]="courriel" name="courriel" type="email" value=""></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Option de paiement</ion-label>
+            <ion-select [(ngModel)]="option">
+              <ion-option value="monthly">Mensuel (19.99$/mois)</ion-option>
+              <ion-option value="annualy">Annuel (249.99$/année)</ion-option>
+            </ion-select>
+        </ion-item>
+      </ion-list>
+      <ion-buttons>
+          <button ion-button (click)="subscribe()">S'abonner</button>
+      </ion-buttons>
+
+</ion-content>
