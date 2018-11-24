@@ -32,6 +32,26 @@ export class ExercicePage {
     this.workoutId = this.navParams.get('workoutId');
     this.exerciceId = this.navParams.get('exerciceId');
 
+    var niveau = localStorage.getItem('niveau');
+
+    if(niveau == "debutant") {
+      this.weight = 50;
+      this.setsNumber = 3;
+      this.repsNumber = 10;
+    } else if(niveau == "intermediaire") {
+      this.weight = 125;
+      this.setsNumber = 4;
+      this.repsNumber = 12;
+    } else if(niveau == "avance") {
+      this.weight = 215;
+      this.setsNumber = 5;
+      this.repsNumber = 5;
+    } else {
+      this.weight = 50;
+      this.setsNumber = 3;
+      this.repsNumber = 10;
+    }
+
     if(this.exerciceId){
       this.exercice = JSON.parse(localStorage.getItem("exercice" + this.workoutId + "-" + this.exerciceId));
 
