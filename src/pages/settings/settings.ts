@@ -118,10 +118,11 @@ export class SettingsPage {
 
   verifierDefini(pp): string {
     if (pp == null || pp == "undefined" || pp == "" || pp == "null") {
-      return " ";
+      return "";
     }
     else {
       return pp;
     }
   }
+
 }
