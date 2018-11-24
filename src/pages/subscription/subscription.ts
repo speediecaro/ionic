@@ -71,4 +71,52 @@ export class SubscriptionPage {
     alert.present();
   }
 
+  sendMail() {
+    
+    //Envoyer un courriel
+
+    var data = JSON.stringify({
+      "personalizations": [
+        {
+          "to": [
+            {
+              "email": this.courriel,
+              "name": this.prenom + " " + this.nom
+            }
+          ],
+          "subject": "Confirmation d'abonnement"
+        }
+      ],
+      "from": {
+        "email": "speediecaro@gmail.com",
+        "name": "Logiciel FitMe"
+      },
+      "reply_to": {
+        "email": this.courriel,
+        "name": "Logiciel FitMe"
+      },
+      "content": [
+        {
+          "type": "text/plain",
+          "value": "Bonjour, l'abonnement pour l'utilisateur " + this.prenom + " " + this.nom + " (" + this.courriel + ") a choisi l'abonnement " + this.option
+        }
+      ]
+    });
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === this.DONE) {
+        console.log(this.responseText);
+      }
+    });
+
+    xhr.open("POST", "https://api.sendgrid.com/v3/mail/send");
+    xhr.setRequestHeader("authorization", "Bearer 6bagjbf-RCmVkhIjCZO-iw");
+    xhr.setRequestHeader("content-type", "application/json");
+
+    xhr.send(data);
+    // alert("a été envoyé à " + this.courriel);
+  }
 }
