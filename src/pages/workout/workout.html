@@ -29,7 +29,7 @@
   </ion-list>
 
   <div class="content has-header">
-      <button ion-button float-right (click)="afficherOrdre($event)">Ordre</button>
+      <button ion-button float-right (click)="afficherOrdre($event)" [hidden]="(exerciceList.length <= 1)">Modifier l'ordre</button>
       <ion-list>
         <ion-item-group [reorder]="shouldShowReorder" show-reorder="true" (ionItemReorder)="reorderItems($event)">
           <ion-card *ngFor="let exercice of exerciceList">

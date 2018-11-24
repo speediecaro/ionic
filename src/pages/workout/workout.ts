@@ -19,7 +19,7 @@ export class WorkoutPage {
   private workout: any;
   private workoutName: string;
   private exerciceMax: number;
-  private exerciceList: any[];
+  private exerciceList: any[] = [];
   private ORDRE_DEFAUT = false;
   public shouldShowReorder: any = this.ORDRE_DEFAUT;
 

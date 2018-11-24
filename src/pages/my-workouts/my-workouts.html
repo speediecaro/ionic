@@ -10,6 +10,9 @@
     <ion-title>Mes entrainements</ion-title>
 
     <ion-buttons end>
+      <button ion-button icon-only (tap)="help()">
+        <ion-icon name="help"></ion-icon>
+      </button>
       <button ion-button icon-only (tap)="viewSettingsPage()">
         <ion-icon name="settings"></ion-icon>
       </button>
@@ -20,6 +23,8 @@
 
 
 <ion-content padding> 
+
+  
 
   <ion-list>
     <ion-item *ngFor="let workout of workoutList">

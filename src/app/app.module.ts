@@ -12,6 +12,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { MyWorkoutsPage } from './../pages/my-workouts/my-workouts';
 import { WorkoutPage } from '../pages/workout/workout';
 import { ExercicePage } from '../pages/exercice/exercice';
+import { HelpPage } from '../pages/help/help';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ExercicePage } from '../pages/exercice/exercice';
     SettingsPage,
     MyWorkoutsPage,
     WorkoutPage,
-    ExercicePage
+    ExercicePage,
+    HelpPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { ExercicePage } from '../pages/exercice/exercice';
     SettingsPage,
     MyWorkoutsPage,
     WorkoutPage,
-    ExercicePage
+    ExercicePage,
+    HelpPage
   ],
   providers: [
     StatusBar,
